@@ -1,4 +1,4 @@
-# weewx-json
+# weewx-metrics
 Extension for Prometheus Metrics endpoint from weewx
 
 Based on [teeks99/weewx-json](https://github.com/teeks99/weewx-json)
