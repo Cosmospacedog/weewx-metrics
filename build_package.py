@@ -8,7 +8,7 @@ version = "0.0"
 dist_path = "dist"
 
 def package_dir():
-    return f"weewx-json_{version}"
+    return f"weewx-metrics_{version}"
 
 
 def clean_dist():
@@ -41,13 +41,13 @@ def file_paths():
     os.chdir(os.path.join(dist_path, package_dir()))
 
     paths = []
-    for root, _, files in os.walk("skins/JSON"):
+    for root, _, files in os.walk("skins/METRICS"):
         for filename in files:
             paths.append(os.path.join(root, filename))
 
     os.chdir(original_dir)
 
-    return ("skins/JSON", paths)
+    return ("skins/METIRCS", paths)
 
 
 def install_file():
@@ -72,7 +72,7 @@ def create_zip():
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Package the JSON extension')
+    parser = argparse.ArgumentParser(description='Package the Metrics extension')
     parser.add_argument('--set-version', default="0.0",
                         help='Version number to build')
 

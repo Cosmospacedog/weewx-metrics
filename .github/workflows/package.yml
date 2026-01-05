@@ -17,4 +17,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: package
-        path: dist/weewx-json_${{ steps.hash.outputs.sha_short }}.tar.gz
+        path: dist/weewx-metrics_${{ steps.hash.outputs.sha_short }}.tar.gz

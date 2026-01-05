@@ -1,0 +1,207 @@
+# =========================================
+# Station metadata
+# =========================================
+
+# HELP weewx_station_info Static station metadata
+# TYPE weewx_station_info gauge
+weewx_station_info{location="$station.location",latitude="$station.stn_info.latitude_f",longitude="$station.stn_info.longitude_f",altitude_m="$station.altitude.meter.raw",link="$station.station_url"} 1
+
+
+# =========================================
+# Generation metadata
+# =========================================
+
+# HELP weewx_generation_info WeeWX generator and generation time
+# TYPE weewx_generation_info gauge
+weewx_generation_info{generator="weewx $station.version",time="$current.dateTime.format('%Y-%m-%dT%H:%M:%S%z')"} 1
+
+
+# =========================================
+# Current conditions (gauges)
+# =========================================
+
+# HELP weewx_temperature Current outdoor temperature
+# TYPE weewx_temperature gauge
+weewx_temperature{units="$current.outTemp.format(' ').lstrip()"} $current.outTemp.raw
+
+# HELP weewx_dewpoint Current dewpoint
+# TYPE weewx_dewpoint gauge
+weewx_dewpoint{units="$current.dewpoint.format(' ').lstrip()"} $current.dewpoint.raw
+
+# HELP weewx_humidity Current outdoor humidity
+# TYPE weewx_humidity gauge
+weewx_humidity{units="$current.outHumidity.format(' ').lstrip()"} $current.outHumidity.raw
+
+# HELP weewx_heat_index Current heat index
+# TYPE weewx_heat_index gauge
+weewx_heat_index{units="$current.heatindex.format(' ').lstrip()"} $current.heatindex.raw
+
+# HELP weewx_barometer Current barometric pressure
+# TYPE weewx_barometer gauge
+weewx_barometer{units="$current.barometer.format(' ').lstrip()"} $current.barometer.raw
+
+# HELP weewx_wind_speed Current wind speed
+# TYPE weewx_wind_speed gauge
+weewx_wind_speed{units="$current.windSpeed.format(' ').lstrip()"} $current.windSpeed.raw
+
+# HELP weewx_wind_gust Current wind gust
+# TYPE weewx_wind_gust gauge
+weewx_wind_gust{units="$current.windGust.format(' ').lstrip()"} $current.windGust.raw
+
+# HELP weewx_wind_direction Current wind direction
+# TYPE weewx_wind_direction gauge
+weewx_wind_direction{units="$current.windDir.format(' ').lstrip()"} $current.windDir.raw
+
+# HELP weewx_wind_chill Current wind chill
+# TYPE weewx_wind_chill gauge
+weewx_wind_chill{units="$current.windchill.format(' ').lstrip()"} $current.windchill.raw
+
+# HELP weewx_rain_rate Current rain rate
+# TYPE weewx_rain_rate gauge
+weewx_rain_rate{units="$current.rainRate.format(' ').lstrip()"} $current.rainRate.raw
+
+# HELP weewx_inside_temperature Current indoor temperature
+# TYPE weewx_inside_temperature gauge
+weewx_inside_temperature{units="$current.inTemp.format(' ').lstrip()"} $current.inTemp.raw
+
+# HELP weewx_inside_humidity Current indoor humidity
+# TYPE weewx_inside_humidity gauge
+weewx_inside_humidity{units="$current.inHumidity.format(' ').lstrip()"} $current.inHumidity.raw
+
+
+# =========================================
+# Aggregate helpers
+# period = day | week | month | year
+# =========================================
+
+# ---------- Temperature ----------
+
+# HELP weewx_temperature_max Maximum temperature
+# TYPE weewx_temperature_max gauge
+weewx_temperature_max{period="day",units="$day.outTemp.max.format(' ').lstrip()"} $day.outTemp.max.raw
+weewx_temperature_max{period="week",units="$week.outTemp.max.format(' ').lstrip()"} $week.outTemp.max.raw
+weewx_temperature_max{period="month",units="$month.outTemp.max.format(' ').lstrip()"} $month.outTemp.max.raw
+weewx_temperature_max{period="year",units="$year.outTemp.max.format(' ').lstrip()"} $year.outTemp.max.raw
+
+# HELP weewx_temperature_min Minimum temperature
+# TYPE weewx_temperature_min gauge
+weewx_temperature_min{period="day",units="$day.outTemp.min.format(' ').lstrip()"} $day.outTemp.min.raw
+weewx_temperature_min{period="week",units="$week.outTemp.min.format(' ').lstrip()"} $week.outTemp.min.raw
+weewx_temperature_min{period="month",units="$month.outTemp.min.format(' ').lstrip()"} $month.outTemp.min.raw
+weewx_temperature_min{period="year",units="$year.outTemp.min.format(' ').lstrip()"} $year.outTemp.min.raw
+
+
+# ---------- Dewpoint ----------
+
+# HELP weewx_dewpoint_max Maximum dewpoint
+# TYPE weewx_dewpoint_max gauge
+weewx_dewpoint_max{period="day"} $day.dewpoint.max.raw
+weewx_dewpoint_max{period="week"} $week.dewpoint.max.raw
+weewx_dewpoint_max{period="month"} $month.dewpoint.max.raw
+weewx_dewpoint_max{period="year"} $year.dewpoint.max.raw
+
+# HELP weewx_dewpoint_min Minimum dewpoint
+# TYPE weewx_dewpoint_min gauge
+weewx_dewpoint_min{period="day"} $day.dewpoint.min.raw
+weewx_dewpoint_min{period="week"} $week.dewpoint.min.raw
+weewx_dewpoint_min{period="month"} $month.dewpoint.min.raw
+weewx_dewpoint_min{period="year"} $year.dewpoint.min.raw
+
+
+# ---------- Humidity ----------
+
+# HELP weewx_humidity_max Maximum humidity
+# TYPE weewx_humidity_max gauge
+weewx_humidity_max{period="day"} $day.outHumidity.max.raw
+weewx_humidity_max{period="week"} $week.outHumidity.max.raw
+weewx_humidity_max{period="month"} $month.outHumidity.max.raw
+weewx_humidity_max{period="year"} $year.outHumidity.max.raw
+
+# HELP weewx_humidity_min Minimum humidity
+# TYPE weewx_humidity_min gauge
+weewx_humidity_min{period="day"} $day.outHumidity.min.raw
+weewx_humidity_min{period="week"} $week.outHumidity.min.raw
+weewx_humidity_min{period="month"} $month.outHumidity.min.raw
+weewx_humidity_min{period="year"} $year.outHumidity.min.raw
+
+
+# ---------- Barometer ----------
+
+# HELP weewx_barometer_max Maximum barometric pressure
+# TYPE weewx_barometer_max gauge
+weewx_barometer_max{period="day"} $day.barometer.max.raw
+weewx_barometer_max{period="week"} $week.barometer.max.raw
+weewx_barometer_max{period="month"} $month.barometer.max.raw
+weewx_barometer_max{period="year"} $year.barometer.max.raw
+
+# HELP weewx_barometer_min Minimum barometric pressure
+# TYPE weewx_barometer_min gauge
+weewx_barometer_min{period="day"} $day.barometer.min.raw
+weewx_barometer_min{period="week"} $week.barometer.min.raw
+weewx_barometer_min{period="month"} $month.barometer.min.raw
+weewx_barometer_min{period="year"} $year.barometer.min.raw
+
+
+# ---------- Wind ----------
+
+# HELP weewx_wind_speed_max Maximum wind speed
+# TYPE weewx_wind_speed_max gauge
+weewx_wind_speed_max{period="day"} $day.windSpeed.max.raw
+weewx_wind_speed_max{period="week"} $week.windSpeed.max.raw
+weewx_wind_speed_max{period="month"} $month.windSpeed.max.raw
+weewx_wind_speed_max{period="year"} $year.windSpeed.max.raw
+
+# HELP weewx_wind_gust_max Maximum wind gust
+# TYPE weewx_wind_gust_max gauge
+weewx_wind_gust_max{period="day"} $day.windGust.max.raw
+weewx_wind_gust_max{period="week"} $week.windGust.max.raw
+weewx_wind_gust_max{period="month"} $month.windGust.max.raw
+weewx_wind_gust_max{period="year"} $year.windGust.max.raw
+
+
+# ---------- Rain ----------
+
+# HELP weewx_rain_rate_max Maximum rain rate
+# TYPE weewx_rain_rate_max gauge
+weewx_rain_rate_max{period="day"} $day.rainRate.max.raw
+weewx_rain_rate_max{period="week"} $week.rainRate.max.raw
+weewx_rain_rate_max{period="month"} $month.rainRate.max.raw
+weewx_rain_rate_max{period="year"} $year.rainRate.max.raw
+
+# HELP weewx_rain_total Total rainfall
+# TYPE weewx_rain_total counter
+weewx_rain_total{period="day",units="$day.rain.sum.format(' ').lstrip()"} $day.rain.sum.raw
+weewx_rain_total{period="week",units="$week.rain.sum.format(' ').lstrip()"} $week.rain.sum.raw
+weewx_rain_total{period="month",units="$month.rain.sum.format(' ').lstrip()"} $month.rain.sum.raw
+weewx_rain_total{period="year",units="$year.rain.sum.format(' ').lstrip()"} $year.rain.sum.raw
+
+
+# ---------- Indoor ----------
+
+# HELP weewx_inside_temperature_max Maximum indoor temperature
+# TYPE weewx_inside_temperature_max gauge
+weewx_inside_temperature_max{period="day"} $day.inTemp.max.raw
+weewx_inside_temperature_max{period="week"} $week.inTemp.max.raw
+weewx_inside_temperature_max{period="month"} $month.inTemp.max.raw
+weewx_inside_temperature_max{period="year"} $year.inTemp.max.raw
+
+# HELP weewx_inside_temperature_min Minimum indoor temperature
+# TYPE weewx_inside_temperature_min gauge
+weewx_inside_temperature_min{period="day"} $day.inTemp.min.raw
+weewx_inside_temperature_min{period="week"} $week.inTemp.min.raw
+weewx_inside_temperature_min{period="month"} $month.inTemp.min.raw
+weewx_inside_temperature_min{period="year"} $year.inTemp.min.raw
+
+# HELP weewx_inside_humidity_max Maximum indoor humidity
+# TYPE weewx_inside_humidity_max gauge
+weewx_inside_humidity_max{period="day"} $day.inHumidity.max.raw
+weewx_inside_humidity_max{period="week"} $week.inHumidity.max.raw
+weewx_inside_humidity_max{period="month"} $month.inHumidity.max.raw
+weewx_inside_humidity_max{period="year"} $year.inHumidity.max.raw
+
+# HELP weewx_inside_humidity_min Minimum indoor humidity
+# TYPE weewx_inside_humidity_min gauge
+weewx_inside_humidity_min{period="day"} $day.inHumidity.min.raw
+weewx_inside_humidity_min{period="week"} $week.inHumidity.min.raw
+weewx_inside_humidity_min{period="month"} $month.inHumidity.min.raw
+weewx_inside_humidity_min{period="year"} $year.inHumidity.min.raw

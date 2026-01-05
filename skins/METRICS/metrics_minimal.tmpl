@@ -1,0 +1,49 @@
+# =========================================
+# Station metadata
+# =========================================
+
+# HELP weewx_station_info Static station metadata
+# TYPE weewx_station_info gauge
+weewx_station_info{location="$station.location",latitude="$station.stn_info.latitude_f",longitude="$station.stn_info.longitude_f",altitude_m="$station.altitude.meter.raw",link="$station.station_url"} 1
+
+
+# =========================================
+# Generation metadata
+# =========================================
+
+# HELP weewx_generation_info WeeWX generator and generation time
+# TYPE weewx_generation_info gauge
+weewx_generation_info{generator="weewx $station.version",time="$current.dateTime.format('%Y-%m-%dT%H:%M:%S%z')"} 1
+
+
+# =========================================
+# Current conditions
+# =========================================
+
+# HELP weewx_temperature Current outdoor temperature
+# TYPE weewx_temperature gauge
+weewx_temperature{units="$current.outTemp.format(' ').lstrip()"} $current.outTemp.raw
+
+# HELP weewx_humidity Current outdoor humidity
+# TYPE weewx_humidity gauge
+weewx_humidity{units="$current.outHumidity.format(' ').lstrip()"} $current.outHumidity.raw
+
+# HELP weewx_barometer Current barometric pressure
+# TYPE weewx_barometer gauge
+weewx_barometer{units="$current.barometer.format(' ').lstrip()"} $current.barometer.raw
+
+# HELP weewx_wind_speed Current wind speed
+# TYPE weewx_wind_speed gauge
+weewx_wind_speed{units="$current.windSpeed.format(' ').lstrip()"} $current.windSpeed.raw
+
+# HELP weewx_wind_gust Current wind gust
+# TYPE weewx_wind_gust gauge
+weewx_wind_gust{units="$current.windGust.format(' ').lstrip()"} $current.windGust.raw
+
+# HELP weewx_wind_direction Current wind direction
+# TYPE weewx_wind_direction gauge
+weewx_wind_direction{units="$current.windDir.format(' ').lstrip()"} $current.windDir.raw
+
+# HELP weewx_rain_rate Current rain rate
+# TYPE weewx_rain_rate gauge
+weewx_rain_rate{units="$current.rainRate.format(' ').lstrip()"} $current.rainRate.raw
