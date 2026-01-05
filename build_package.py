@@ -41,13 +41,13 @@ def file_paths():
     os.chdir(os.path.join(dist_path, package_dir()))
 
     paths = []
-    for root, _, files in os.walk("skins/METRICS"):
+    for root, _, files in os.walk("skins/Metrics"):
         for filename in files:
             paths.append(os.path.join(root, filename))
 
     os.chdir(original_dir)
 
-    return ("skins/METIRCS", paths)
+    return ("skins/Metrics", paths)
 
 
 def install_file():

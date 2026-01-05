@@ -7,14 +7,14 @@ class Metrics_Installer(ExtensionInstaller):
     def __init__(self):
         super(Metrics_Installer, self).__init__(
             version="$version",
-            name='METRICS',
+            name='Metrics',
             description='Add Prometheus Metrics output',
             author="Thomas Kent, Alex Burnett, Sirius Insight",
             author_email="https://github.com/Cosmospacedog/weewx-metrics",
             config={
                 'StdReport': {
                     'MetricsReport': {
-                        'skin': 'METRICS',
+                        'skin': 'Metrics',
                         'enable': True
                     }
                 }
